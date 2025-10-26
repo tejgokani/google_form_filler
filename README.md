@@ -103,24 +103,22 @@ npm start
 
 ### Backend (Render.com)
 
-1. **Push to GitHub**
-   ```bash
-   git init
-   git add .
-   git commit -m "Ready for deployment"
-   git push
-   ```
+1. **Your repository is already on GitHub!**
+   - Repository: https://github.com/tejgokani/google_form_filler
+   - Branch: main
+   - Status: ✅ Ready for deployment
 
 2. **Create Web Service on Render**
    - Go to [render.com](https://render.com) → New Web Service
-   - Connect your GitHub repository
+   - Connect your GitHub repository: `tejgokani/google_form_filler`
    - **Settings:**
      ```
      Name: form-filler-backend
      Root Directory: gff/b
-     Build Command: pip install -r requirements.txt && playwright install chromium && playwright install-deps
-     Start Command: gunicorn app:app
+     Runtime: Docker (Important: Choose Docker, not Python!)
+     Dockerfile Path: Dockerfile
      ```
+   - Docker will automatically use the Dockerfile
 
 3. **Add Environment Variables**
    ```
