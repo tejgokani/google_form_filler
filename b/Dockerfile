@@ -41,8 +41,8 @@ RUN playwright install chromium
 # Copy application code
 COPY . .
 
-# Expose port
-EXPOSE 5002
+# Expose port (Render assigns this dynamically)
+EXPOSE $PORT
 
-# Run the application
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5002", "--timeout", "300", "--workers", "1"]
+# Run the application - use Render's PORT environment variable
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --timeout 300 --workers 1

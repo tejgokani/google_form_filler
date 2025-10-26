@@ -303,6 +303,19 @@ def generate_ai_response(question_text, form_context="", response_tone="neutral"
         else:
             return f"This is {sentiment_word} overall. It presents a balanced mix of effective elements and areas that could benefit from improvement."
 
+# Health check endpoint for deployment
+@app.route('/', methods=['GET'])
+def health_check():
+    return jsonify({
+        "status": "running",
+        "message": "Google Form Filler API is running",
+        "version": "2.0",
+        "endpoints": {
+            "generate": "/generate (POST)",
+            "health": "/ (GET)"
+        }
+    }), 200
+
 @app.route('/generate', methods=['POST'])
 def generate():
     data = request.get_json()
