@@ -36,7 +36,7 @@ Intelligent automation tool for Google Forms with AI-powered context-aware respo
 - Google Gemini API key ([Get one free](https://makersuite.google.com/app/apikey))
 
 ### 1. Backend Setup
-```bash
+\`\`\`bash
 # Navigate to backend
 cd gff/b
 
@@ -57,10 +57,10 @@ cp .env.example .env
 # Run backend
 python app.py
 # Backend runs on http://127.0.0.1:5002
-```
+\`\`\`
 
 ### 2. Frontend Setup
-```bash
+\`\`\`bash
 # Navigate to frontend
 cd gff/f
 
@@ -70,7 +70,7 @@ npm install
 # Run frontend
 npm start
 # Frontend opens at http://localhost:3000
-```
+\`\`\`
 
 ### 3. Test
 1. Open http://localhost:3000
@@ -99,109 +99,55 @@ npm start
 
 ---
 
-## 📦 Deployment
-
-### Backend (Render.com)
-
-1. **Your repository is already on GitHub!**
-   - Repository: https://github.com/tejgokani/google_form_filler
-   - Branch: main
-   - Status: ✅ Ready for deployment
-
-2. **Create Web Service on Render**
-   - Go to [render.com](https://render.com) → New Web Service
-   - Connect your GitHub repository: `tejgokani/google_form_filler`
-   - **Settings:**
-     ```
-     Name: form-filler-backend
-     Root Directory: gff/b
-     Runtime: Docker (Important: Choose Docker, not Python!)
-     Dockerfile Path: Dockerfile
-     ```
-   - Docker will automatically use the Dockerfile
-
-3. **Add Environment Variables**
-   ```
-   GEMINI_API_KEY=your-gemini-api-key
-   GEMINI_MODEL=gemini-2.5-flash
-   ALLOWED_ORIGINS=https://your-vercel-app.vercel.app
-   ```
-
-4. Deploy and copy your backend URL
-
-### Frontend (Vercel.com)
-
-1. **Deploy on Vercel**
-   - Go to [vercel.com](https://vercel.com) → New Project
-   - Import your GitHub repository
-   - **Settings:**
-     ```
-     Framework: Create React App
-     Root Directory: gff/f
-     Build Command: npm run build
-     Output Directory: build
-     ```
-
-2. **Add Environment Variable**
-   ```
-   REACT_APP_API_URL=https://your-backend.onrender.com
-   ```
-
-3. **Update Backend CORS**
-   - Go back to Render
-   - Update `ALLOWED_ORIGINS` with your Vercel URL
-
----
-
 ## 🏗️ Project Structure
 
-```
+\`\`\`
 gff/
 ├── b/                          # Backend (Flask + Playwright)
 │   ├── app.py                  # Main application
 │   ├── requirements.txt        # Python dependencies
-│   ├── Procfile               # Render deployment config
-│   ├── render-service.yaml    # Render service config
-│   ├── test_gemini.py         # API test script
-│   └── .env.example           # Environment template
+│   ├── Dockerfile              # Docker configuration
+│   ├── .dockerignore           # Docker ignore patterns
+│   ├── Procfile                # Process configuration
+│   └── .env.example            # Environment template
 │
 ├── f/                          # Frontend (React)
 │   ├── src/
-│   │   ├── App.js             # Main React component
-│   │   ├── App.css            # Cyberpunk styling
-│   │   └── index.js           # Entry point
-│   ├── package.json           # Node dependencies
-│   └── public/                # Static assets
+│   │   ├── App.js              # Main React component
+│   │   ├── App.css             # Cyberpunk styling
+│   │   └── index.js            # Entry point
+│   ├── package.json            # Node dependencies
+│   └── public/                 # Static assets
 │
-└── README.md                  # This file
-```
+└── README.md                   # This file
+\`\`\`
 
 ---
 
 ## 🔧 Configuration
 
 ### Backend Environment Variables (.env)
-```bash
+\`\`\`bash
 GEMINI_API_KEY=your-api-key-here
 GEMINI_MODEL=gemini-2.5-flash
-ALLOWED_ORIGINS=https://your-frontend.vercel.app,http://localhost:3000
+ALLOWED_ORIGINS=https://your-frontend-url.com,http://localhost:3000
 PORT=5002
-```
+\`\`\`
 
 ### Frontend Environment Variables
 **Local (.env.local)**
-```bash
+\`\`\`bash
 REACT_APP_API_URL=http://127.0.0.1:5002
-```
+\`\`\`
 
-**Production (Vercel)**
-```bash
-REACT_APP_API_URL=https://your-backend.onrender.com
-```
+**Production**
+\`\`\`bash
+REACT_APP_API_URL=https://your-backend-url.com
+\`\`\`
 
 ---
 
-## �� Supported Google Form Types
+## 📋 Supported Google Form Types
 
 | Question Type | Status | Notes |
 |--------------|--------|-------|
@@ -221,16 +167,9 @@ REACT_APP_API_URL=https://your-backend.onrender.com
 
 ## 🧪 Testing
 
-### Test Gemini API
-```bash
-cd gff/b
-export GEMINI_API_KEY='your-key'
-python test_gemini.py
-```
-
 ### Test Locally
-1. Start backend: `cd gff/b && python app.py`
-2. Start frontend: `cd gff/f && npm start`
+1. Start backend: \`cd gff/b && python app.py\`
+2. Start frontend: \`cd gff/f && npm start\`
 3. Open http://localhost:3000
 4. Test with a simple 2-question form
 
@@ -241,21 +180,21 @@ python test_gemini.py
 ### Backend Issues
 
 **"Module not found"**
-- Solution: Activate venv and run `pip install -r requirements.txt`
+- Solution: Activate venv and run \`pip install -r requirements.txt\`
 
 **"Playwright not found"**
-- Solution: Run `playwright install chromium`
+- Solution: Run \`playwright install chromium\`
 
 **"CORS error"**
-- Solution: Check `ALLOWED_ORIGINS` includes your frontend URL
+- Solution: Check \`ALLOWED_ORIGINS\` includes your frontend URL
 
 **"Gemini API error"**
-- Solution: Verify `GEMINI_API_KEY` is set and valid
+- Solution: Verify \`GEMINI_API_KEY\` is set and valid
 
 ### Frontend Issues
 
 **"Failed to fetch"**
-- Solution: Check backend is running and `REACT_APP_API_URL` is correct
+- Solution: Check backend is running and \`REACT_APP_API_URL\` is correct
 
 **"CORS blocked"**
 - Solution: Backend CORS must allow frontend origin
@@ -289,24 +228,8 @@ python test_gemini.py
 - ✅ API keys in environment variables only
 - ✅ CORS configured for specific origins
 - ✅ No sensitive data in code
-- ✅ `.env` files gitignored
+- ✅ \`.env\` files gitignored
 - ✅ Input validation on backend
-
----
-
-## 💰 Cost Estimate
-
-### Free Tier (Development/Testing)
-- **Vercel**: Free (Hobby plan)
-- **Render**: Free (with cold starts)
-- **Gemini API**: Free tier (60 req/min)
-- **Total**: $0/month
-
-### Production (Recommended)
-- **Vercel**: Free or $20/month (Pro)
-- **Render**: $7/month (Starter) - Better for Playwright
-- **Gemini API**: Free tier or paid ($0.00025/1K chars)
-- **Total**: ~$7/month
 
 ---
 
@@ -369,18 +292,15 @@ MIT License - Use at your own risk. This tool is for educational and testing pur
 **Q: Can I use this for production surveys?**
 A: This tool is designed for testing. Use responsibly and only on forms you own or have permission to test.
 
-**Q: Why is the first request slow on Render?**
-A: Render free tier spins down after 15 minutes of inactivity. Consider upgrading to paid tier for faster response.
-
 **Q: Can I add more field types?**
-A: Yes! Extend the field detection logic in `app.py` around line 360-470.
+A: Yes! Extend the field detection logic in \`app.py\` around line 360-470.
 
 **Q: How do I add rate limiting?**
 A: Consider using Flask-Limiter or implementing custom rate limiting logic.
 
 ### Need Help?
 - Check browser console (F12) for frontend errors
-- Check Render logs for backend errors
+- Check backend logs for errors
 - Verify environment variables are set
 - Test locally first to isolate issues
 
@@ -397,7 +317,7 @@ A: Consider using Flask-Limiter or implementing custom rate limiting logic.
 - ✅ Implemented tone control
 - ✅ Improved field detection
 - ✅ Production-ready configuration
-- ✅ Comprehensive documentation
+- ✅ Docker support for deployment
 
 ### v1.0
 - Basic form filling
