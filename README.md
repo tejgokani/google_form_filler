@@ -343,3 +343,7 @@ A: Consider using Flask-Limiter or implementing custom rate limiting logic.
 **Made with ❤️ for automating boring tasks**
 
 ⚡ **Happy Automating!** ⚡
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
